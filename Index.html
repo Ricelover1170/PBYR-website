@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Black Yellow & Red ($PBYR)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), #1b1601, #000000);
+      color: #ffffff;
+      overflow-x: hidden;
+      position: relative;
+    }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.5rem 2rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: rgba(26, 18, 30, 0); /* Semi-transparent background */
+        backdrop-filter: blur(8px); /* Stronger blur effect */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    }
+    nav .logo {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #ffcc00;
+        flex: 1;
+    }
+    nav ul {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    
+    nav ul li button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        padding: 5px;
+        position: relative;
+        transition: color 0.3s;
+    }
+
+    nav ul li button:hover::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+    }
+    nav ul li button:hover {
+      color: #f33d3d;
+    }
+    .star {
+        position: absolute;
+        opacity: 0.7;
+        animation: fall linear infinite;
+        background: linear-gradient(145deg, #fcfcfc00, rgb(255, 255, 255));
+    }
+    @keyframes fall {
+        0% {
+          transform: translateY(0) translateX(0) rotate(60deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(200vh) translateX(800px) rotate(60deg);
+          opacity: 0;
+        }
+    }
+    .fade-up {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.6s ease-out forwards;
+    }
+      
+    @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+      
+    header {
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .highlight {
+      color: #ffcc00;
+      font-weight: 600;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+   
+    p {
+      font-size: 1.2rem;
+    }
+    
+    .cta-buttons {
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .cta-buttons a {
+      display: inline-block;
+      margin: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #dff8018f, #ffcc0044);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 20px #ffcc00;
+    }
+
+    #buy-nav {
+      margin-top: 0rem;
+      margin-bottom: 0rem;
+    }
+
+    .cta-buttons a:hover {
+      transform: scale(1.05);
+      color: #f33d3d;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        margin-top: 10%;
+        z-index: 1;
+    }
+
+    .home {
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+     
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 3rem;
+      text-align: center; /* centers both image and button horizontally */
+
+    }
+    .gallery img {
+      margin-left: 10rem;
+      max-width: 300px;
+      max-height: 30rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+
+
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .gallery a button {
+      max-width: 300px;
+      max-height: 30rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(229, 233, 34, 0.712);
+      margin-top: 2rem;
+    }
+
+    .artwork-details {
+      max-height: 20rem;
+      margin-bottom: 3rem;
+    }
+
+    .artwork-details p{
+      font-size: 0.8rem;
+      max-width: 15rem;
+    }
+
+    /* Top info boxes styling */
+    .info-boxes {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 10rem;
+    }
+    .info-box:hover{
+        background-color: #3d4201;
+
+    }
+    .info-box{
+        background-color: #3d42018f;
+        border-radius: 10px;
+        border: 1px solid rgb(229, 255, 0);
+        text-align: center;
+        flex: 1;
+        max-width: 275px;
+    }
+    
+
+    .info-box h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .info-box p {
+        font-size: 14px;
+        color: #999;
+    }
+
+    .copy-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: white;
+        font-size: 18px;
+    }
+
+    /* About section */
+    .about-section {
+        text-align: center;
+        margin: 100px 0;
+    }
+
+    .about-section h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    
+
+    .about-section p {
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    .rocket {
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+   
+
+    /* Feature boxes styling */
+    .feature-boxes {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 50px;
+        flex-wrap: wrap;
+        padding: 0 10px; /* Add horizontal padding to feature boxes */
+        margin: 0 auto; /* Center the section */
+
+    }
+
+    .feature-box {
+        background-color: #1c1e12;
+        border-radius: 10px;
+        padding: 30px 20px; /* Reduced horizontal padding */
+        text-align: center;
+        flex: 1;
+        min-width: 240px;
+        max-width: 300px; /* Limit max width to prevent stretching */
+        position: relative;
+        margin: 10px; /* Add margin around each feature box */
+    }
+
+    .feature-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(200, 255, 0, 0.15);
+    }
+
+    .feature-number {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #1a121e;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .feature-emoji {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .feature-box h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .feature-box p {
+        color: #aaa;
+        font-size: 14px;
+    }
+
+    /* Tooltip for copy notification */
+    .tooltip {
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        font-size: 16px;
+        width: 100px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -50px;
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .tooltip .tooltiptext.show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s;
+    }
+    
+    .tooltip .tooltiptext.hide {
+      visibility: invisible;
+      opacity: 0;
+  }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+  </style>
+</head>
+<body class = "fade-up">
+  <nav>
+    <div class="logo">$PBYR</div>
+    <ul>
+      <li><button onclick="document.getElementById('Home').scrollIntoView({ behavior: 'smooth' });">Home</button></li>
+      <li><button onclick="document.getElementById('Gallery').scrollIntoView({ behavior: 'smooth' });">Gallery</button></li>
+      <li><button onclick="document.getElementById('Features').scrollIntoView({ behavior: 'smooth' });">Features</button></li>
+    </ul>
+    <div class="cta-buttons" id="buy-nav">
+      <a href="https://app.uniswap.org/explore/tokens/ethereum/0xee23c0544b5524cf50f13e0eb9c28e7d93bc82a3" target="_blank" rel="noopener noreferrer">Buy $PBYR</a>
+    </div>
+  </nav>
+
+  <header id = "Home" class="home">
+    <h1>🖼️ Welcome — Where Art Meets Blockchain,<br><span class="highlight">$PBYR</span></h1>
+    <p>A New Standard of Trust and Tangibility in Digital Assets
+      <span class="highlight">$PBYR</span> is not just another token — it’s a bridge between the digital and physical worlds. 
+      Every <span class="highlight">$PBYR</span> token is backed by a rare, appraised piece of fine art, bringing real-world value to your crypto portfolio.</p>
+    <div class="cta-buttons">
+      <a href="https://app.uniswap.org/explore/tokens/ethereum/0xee23c0544b5524cf50f13e0eb9c28e7d93bc82a3" target="_blank" rel="noopener noreferrer">Buy $PBYR</a>
+    </div>
+
+
+    <p>
+      Backed by Beauty, Built on Trust.
+      Our featured asset is an original painting from the mid-20th century by Jackson Pollock, classified as museum-quality and appraised with a market valuation between $24M – $36M USD. 
+      Through <span class="highlight">$PBYR</span>, this exceptional artwork is tokenized, securely stored, and transparently verified.
+    </p>
+  </header>
+
+  <section id="Gallery" class="gallery">
+    <div>
+      <img src="https://ipfs.io/ipfs/bafkreidj324g5gwjtx46ncpb73glze3evnmgqzxks2rv64r6kyxcxgzcfi" alt="Pollock Painting 1">
+      <a href="https://ipfs.io/ipfs/bafybeif4lxhql45rheyhhdkjhupnacuwi7bswpvvv6uhblvzsmz4hictga" download="yourFileName.pdf">
+        <button>Download Official Documents</button>
+      </a>
+    </div>
+    
+    <div class="artwork-details">
+      <h3>Title: Untitled</h3>
+      <p><strong>Aka:</strong> « Black Yellow & Red »</p>
+      <p><strong>Type of Artwork:</strong> Original Painting</p>
+      <p><strong>Subject:</strong> Abstract - Color Dripping</p>
+      <p><strong>Medium / Support:</strong> Synthetic Retina-based Paint Varnish added to Oil & Enamels on Canvas</p>
+      <p><strong>Size:</strong> 24 X 19¾ inches (60.2 X 50 cms)</p>
+      <p><strong>Year / City, Country:</strong> c.1947-48 / Springs, NY, USA</p>
+      <p><strong>Timeline:</strong> Creation Before the Artist is finally Renowned</p>
+      <p><strong>Known as:</strong> « Long-Lost & Found » Work</p>
+      <p><strong>Signature:</strong> Unsigned</p>
+      <p><strong>Conservation Status:</strong> Museum Quality (with minor fixes)</p>
+      <p><strong>Distinguishing Marks:</strong> « Dripping » / Over-all evenness</p>
+    </div> 
+    <div class="artwork-details">
+      <p><strong>Observation:</strong> Several original Marks on the Back</p>
+      <p><strong>Gallery Archive Number:</strong> YKSH – PLCK 001</p>
+      <p><strong>Authenticity:</strong> Duly Authenticated – Certified & Oath</p>
+      <p><strong>Recognized as:</strong> « Long-Lost & Found »</p>
+      <p><strong>Certificate of Authenticity:</strong> P.V. Abraham Zaab, Santiago, Chile</p>
+      <p><strong>Galerie Notre-Dame de Montréal</strong></p>
+      <p><strong>Provenance:</strong> Entirety Mexico / Chile / Canada</p>
+      <p><strong>Artwork Owner:</strong> Fondation Yorkshire CCP (Canada)</p>
+      <p><strong>Owner’s Affidavit:</strong> Duly Signed & Dated - Detailed Oath</p>
+      <p><strong>Secured Vault:</strong> City Great Montréal (Québec) Canada</p>
+      <p><strong>Low / High Estimates:</strong> $24,000,000 / $36,000,000 USD</p>
+    </div> 
+
+  </section>
+  
+
+
+    <div class="container">
+        <!-- Top info boxes -->
+        <div class="info-boxes">
+            <div class="info-box">
+              <h2 id="token-price"></h2>
+              <p>Current Price per <span class="highlight"> $PBYR</span> in USD</p>
+            </div>
+            
+            <div class="info-box">
+              <h2>0xEe23...82a3
+                <div class="tooltip">
+                  <button class="copy-btn" onclick="copyAddress()">📋</button>
+                  <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                </div>
+              </h2>
+              <p>Contract Address</p>
+              
+            </div>
+            
+            <div class="info-box">
+              <h2 id="token-fdv"></h2>
+              <p>Fully Diluted Market Cap</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section">
+        <h1>Why <span class="highlight"> $PBYR</span> ? <span class="rocket">🚀</span></h1>
+        <p>Invest in something meaningful. <span class="highlight"> $PBYR</span> empowers you to own a share of iconic artwork—no gallery visits, no intermediaries, just direct, digital access to tangible value.</p>
+    </div>
+
+    <!-- Feature boxes -->
+    <div id= "Features" class="feature-boxes">
+        <div class="feature-box">
+            <div class="feature-number">1</div>
+            <div class="feature-emoji">🎨</div>
+            <h3>Real Asset-Backed</h3>
+            <p>Each token is tied to a tangible, high-value art piece.</p>
+        </div>
+        
+        <div class="feature-box">
+            <div class="feature-number">2</div>
+            <div class="feature-emoji">🧾</div>
+            <h3>Authenticated & Certified</h3>
+            <p>Verified provenance, appraisals, and documentation.</p>
+        </div>
+        
+        <div class="feature-box">
+            <div class="feature-number">3</div>
+            <div class="feature-emoji">🔐</div>
+            <h3>Vault-Secured</h3>
+            <p>Physical artwork is safely stored in a monitored Canadian facility.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-number">3</div>
+          <div class="feature-emoji">🌐🔗</div>
+          <h3>Global Access & Decentralized</h3>
+          <p>Democratizing ownership of elite art through decentralized technology.</p>
+      </div>
+    </div>
+
+  <footer>
+    &copy; 2025 Black Yellow & Red ($PBYR). All rights reserved.
+  </footer>
+
+
+  <script>
+    // Star animation
+    const starsContainer = document.createElement('div');
+    starsContainer.className = 'stars';
+    starsContainer.style.cssText = `
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: -10;
+    `;
+    document.body.appendChild(starsContainer);
+
+    function createStar() {
+      if (starsContainer.childNodes.length >= 15) return;
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 1;
+      star.style.width = 50 + 'px';
+      star.style.height = size + 'px';
+      star.style.left = Math.random() * 80 + 'vw';
+      star.style.top = Math.random() * -10 + 'vh';
+      const duration = (Math.random() * 5 + 15).toFixed(2);
+      const delay = (Math.random() * 5).toFixed(2);
+      star.style.animation = `fall ${duration}s linear ${delay}s infinite`;
+      
+      star.addEventListener('animationend', () => {
+        star.remove();
+      });
+
+      starsContainer.appendChild(star);
+    }
+
+    setInterval(createStar, 500);
+
+    // Fade up animation for each .fade-up element
+    const fadeUps = document.querySelectorAll('.fade-up');
+    fadeUps.forEach((el, i) => {
+      setTimeout(() => {
+        el.style.animationDelay = `${i * 200}ms`;
+        el.classList.add('animated');
+      }, i * 200);
+    });
+
+    // Function to copy the contract address to clipboard
+    function copyAddress() {
+        const fullAddress = "0xEe23c0544B5524CF50f13e0eB9C28e7d93bc82a3";
+        navigator.clipboard.writeText(fullAddress).then(function() {
+            const tooltip = document.getElementById("myTooltip");
+            tooltip.innerHTML = "Copied!";
+            tooltip.classList.add("show");
+            setTimeout(function() {
+              tooltip.classList.add("hide");
+            }, 2000);
+            
+            setTimeout(function() {
+                tooltip.classList.remove("show");
+                tooltip.classList.remove("hide");
+                tooltip.innerHTML = "Copy to clipboard";
+             
+            }, 3000);
+        });
+    }
+
+    function formatNumberShort(num) {
+      const abs = Math.abs(num);
+      if (abs >= 1_000_000) {
+        return (num / 1_000_000).toFixed(1) + "M";
+      } else if (abs >= 1_000) {
+        return (num / 1_000).toFixed(1) + "K";
+      } else {
+        return num.toFixed(2);
+      }
+    }
+
+    function startCounting(counterElement , targetValue) {
+      let currentValue = 0;
+      const duration = 1000; // Duration of the counting in milliseconds (3 seconds)
+    
+      const increment = targetValue / (duration / 50); // How much to increment every 50ms
+    
+      const interval = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= targetValue) {
+          currentValue = targetValue; // Make sure the number doesn't exceed the target
+          clearInterval(interval); // Stop the interval
+        }
+        counterElement.textContent = `$` + Math.round(currentValue); // Update the counter text
+      }, 50); // Update every 50 milliseconds
+    }
+
+    function infoGecko() {
+      fetch(`https://api.geckoterminal.com/api/v2/search/pools?query=0xEe23c0544B5524CF50f13e0eB9C28e7d93bc82a3&network=eth&page=1`)
+        .then(res => res.json())
+        .then(data => {
+          const attributes = data.data[0].attributes;
+          const price = parseFloat(attributes.base_token_price_usd).toFixed(2);
+          const fdv = formatNumberShort(parseFloat(attributes.fdv_usd));
+          startCounting(document.getElementById("token-price"), price)
+
+          document.getElementById("token-fdv").innerHTML = `$${fdv}`;
+
+        }).catch(err => {
+          document.getElementById("token-price").textContent = "Error fetching token data.";
+          document.getElementById("token-fdv").textContent = "Error fetching token data.";
+          console.error(err);
+        });
+    }
+    infoGecko();
+
+    
+    
+  </script>
+</body>
+</html>
