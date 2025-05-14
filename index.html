@@ -363,6 +363,27 @@
       color: #999;
     }
 
+    #support-box {
+      max-width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: Arial, sans-serif;
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      resize: vertical;
+      max-height: 500px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+    }
+
   </style>
 </head>
 <body class = "fade-up">
@@ -497,6 +518,14 @@
       </div>
     </div>
 
+  <div id="support-box">
+    <h2>Contact Support</h2>
+    <input type="text" id="subject" placeholder="Subject">
+    <textarea id="message" rows="3" placeholder="Your message..."></textarea>
+    <button onclick="sendEmail()">Send</button>
+  </div>
+    
+
   <footer>
     &copy; 2025 Galerie Yorkshire. All rights reserved.
   </footer>
@@ -615,8 +644,16 @@
     }
     infoGecko();
 
-    
-    
+    function sendEmail() {
+      const subject = encodeURIComponent(document.getElementById('subject').value);
+      const body = encodeURIComponent(document.getElementById('message').value);
+      const mailtoLink = `mailto:example@gmail.com?subject=${subject}&body=${body}`;
+      window.location.href = mailtoLink;
+    }
   </script>
+
+  
+  
+ 
 </body>
 </html>
